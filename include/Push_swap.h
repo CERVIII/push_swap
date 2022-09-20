@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   Push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/12 13:56:57 by pcervill          #+#    #+#             */
-/*   Updated: 2022/09/14 17:55:07 by pcervill         ###   ########.fr       */
+/*   Created: 2022/09/20 10:56:06 by pcervill          #+#    #+#             */
+/*   Updated: 2022/09/20 11:14:43 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-void	error(void)
-{
-	printf("ERROR\nSin argumentos");
-}
+# include "../libft/libft.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <string.h>
+# include <ctype.h>
 
-int	main(int argc, char *argv[])
-{
-	argv[0] = 0;
-	if (argc == 1)
-		exit (error);
-}
+# define NORMAL "\x1B[0m"
+# define RED "\x1B[31m"
+# define GREEN "\x1B[32m"
+# define YELLOW "\x1B[33m"
+# define BLUE "\x1B[34m"
+# define MAGENT "\x1B[35m"
+# define CYAN "\x1B[36m"
+# define WHITE "\x1B[37m"
+
+#endif
