@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Push_swap.h                                        :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 10:56:06 by pcervill          #+#    #+#             */
-/*   Updated: 2022/09/28 16:56:26 by pcervill         ###   ########.fr       */
+/*   Updated: 2022/09/29 18:06:11 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,17 @@
 # define CYAN "\x1B[36m"
 # define WHITE "\x1B[37m"
 
-/* typedef struct s_list
+typedef struct s_stack
 {
-	void			*content;
-	struct s_list	*next;
-}	t_list; */
+	char			*content;
+	struct s_stack	*next;
+}t_stack;
 
-void	checknumbers(int argc, char **argv);
+//void	checknumbers(int argc, char **argv);
+t_stack	*addnumber(t_stack *stack_a, char *number);
+t_stack	*initstack(t_stack *stack_a);
+void	*fillstack(char **argv, t_stack *stack_a);
+void	ft_stackdelone(t_stack *stack_a, void (*del) (void *));
+int		ft_stacksize(t_stack *stack_a);
 
 #endif
