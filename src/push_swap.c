@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 13:56:57 by pcervill          #+#    #+#             */
-/*   Updated: 2022/09/29 18:08:48 by pcervill         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:42:32 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,14 @@ int	ft_stacksize(t_stack *stack_a)
 void	*fillstack(char **argv, t_stack *stack_a)
 {
 	int	i;
+	int	number;
 
+	number = 0;
 	i = 1;
 	while (argv[i])
 	{
-		stack_a = addnumber(stack_a, argv[i]);
+		number = ft_atoi(argv[i]);
+		stack_a = addnumber(stack_a, number);
 		i++;
 	}
 	return (stack_a);
@@ -49,7 +52,7 @@ void	*fillstack(char **argv, t_stack *stack_a)
 	return (stack_a);
 } */
 
-t_stack	*addnumber(t_stack *stack_a, char *number)
+t_stack	*addnumber(t_stack *stack_a, int number)
 {
 	t_stack	*newnumber;
 	t_stack	*aux;
@@ -74,7 +77,7 @@ t_stack	*addnumber(t_stack *stack_a, char *number)
 {
 	if (!stack_a)
 		return ;
-	del(stack_a->content);
+	del((void *)stack_a->content);
 	free(stack_a);
 } */
 
@@ -93,8 +96,9 @@ int	main(int argc, char *argv[])
 	}
 	while (stack_a)
 	{
-		printf("%s\n", stack_a->content);
+		printf("   %d\n", stack_a->content);
 		stack_a = stack_a->next;
 	}
-	exit (0);
+	printf("-------	-------\nSTACK A	STACK B\n");
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 10:56:06 by pcervill          #+#    #+#             */
-/*   Updated: 2022/09/29 18:06:11 by pcervill         ###   ########.fr       */
+/*   Updated: 2022/10/03 12:23:52 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,15 @@
 
 typedef struct s_stack
 {
-	char			*content;
+	int				content;
 	struct s_stack	*next;
 }t_stack;
 
 //void	checknumbers(int argc, char **argv);
-t_stack	*addnumber(t_stack *stack_a, char *number);
+t_stack	*addnumber(t_stack *stack_a, int number);
 t_stack	*initstack(t_stack *stack_a);
-void	*fillstack(char **argv, t_stack *stack_a);
 void	ft_stackdelone(t_stack *stack_a, void (*del) (void *));
+void	*fillstack(char **argv, t_stack *stack_a);
 int		ft_stacksize(t_stack *stack_a);
 
 #endif
