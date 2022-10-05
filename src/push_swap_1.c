@@ -6,11 +6,16 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 15:43:22 by pcervill          #+#    #+#             */
-/*   Updated: 2022/10/03 18:10:51 by pcervill         ###   ########.fr       */
+/*   Updated: 2022/10/05 13:48:39 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
+
+/* static void	leaks(void)
+{
+	system("leaks -q push_swap");
+} */
 
 void	checkparams(char **argv)
 {
@@ -24,8 +29,56 @@ void	checkparams(char **argv)
 		while (argv[i][j])
 		{
 			if ((argv[i][j] < 48 || argv[i][j] > 57) && argv[i][j] != 45)
-			{	
-				printf("ERROR:\nParametros incorrectos\n");
+			{
+				printf("%sERROR:\nArgumentos no validos%s\n", RED, NORMAL);
+				exit (1);
+			}
+			if (argv[i][j + 1] == 45)
+			{
+				printf("%sERROR:\nArgumentos no validos%s\n", RED, NORMAL);
+				exit (1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return ;
+}
+
+int	*strnumber(char **argv, int argc)
+{
+	int	*number;
+	int	i;
+	int	j;
+
+	number = (int *) malloc(argc * sizeof(int));
+	if (!number)
+		return (0);
+	i = 1;
+	j = 0;
+	while (argv[i])
+	{
+		number[j++] = ft_atoi(argv[i++]);
+	}
+	number[j] = '\0';
+	free(number);
+	return (number);
+}
+
+void	norepeat(int *number)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (number[i])
+	{
+		j = 0;
+		while (number[j])
+		{
+			if (number[i] == number[j])
+			{
+				printf("%sERROR:\nArgumentos repetidos%s\n", RED, NORMAL);
 				exit (1);
 			}
 			j++;
@@ -41,26 +94,32 @@ int	main(int argc, char **argv)
 	int		*number;
 	int		i;
 
-	number = malloc((argc - 1) * sizeof(int));
-	i = 1;
+	//atexit(leaks);
 	if (argc > 1)
 	{
+		stack_a = NULL;
+		number = NULL;
 		checkparams(argv);
-		//number[i] = ft_atoi(argv[i]);
-		number[i] = atoi(argv[i]);
-		stack_a = ft_lstnew(&number[i]);
-		i = 2;
-		while (argv[i])
+		number = strnumber(argv, argc);
+		norepeat(number);
+		i = 1;
+		while (number[i])
 		{
-			//number[i] = ft_atoi(argv[i]);
-			number[i] = atoi(argv[i]);
-			ft_lstadd_back(&stack_a, ft_lstnew(&number[i]));
+			if (!stack_a)
+			{
+				stack_a = ft_lstnew(number[i]);
+				free(stack_a);
+			}
+			else
+			{
+				ft_lstadd_back(stack_a, ft_lstnew(number[i]));
+				free(stack_a);
+			}
 			i++;
 		}
-		printf("Total de numeros: %d\n", ft_lstsize(stack_a));
 		while (stack_a)
 		{
-			printf("   %d\n", *(int *) stack_a->content);
+			printf("%d\n", stack_a->content);
 			stack_a = stack_a->next;
 		}
 	}
