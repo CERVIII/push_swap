@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 15:43:22 by pcervill          #+#    #+#             */
-/*   Updated: 2022/10/05 13:48:39 by pcervill         ###   ########.fr       */
+/*   Updated: 2022/10/10 12:12:59 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,21 @@
 {
 	system("leaks -q push_swap");
 } */
+void	add_back(t_list *stack_a, int number)
+{
+	t_list	*cpy;
+
+	if (!stack_a)
+		return ;
+	if (!stack_a)
+		stack_a = ft_lstnew(number);
+	else
+	{
+		cpy = ft_lstlast(stack_a);
+		cpy->next = ft_lstnew(number);
+	}
+	return ;
+}
 
 void	checkparams(char **argv)
 {
@@ -73,7 +88,7 @@ void	norepeat(int *number)
 	i = 0;
 	while (number[i])
 	{
-		j = 0;
+		j = i + 1;
 		while (number[j])
 		{
 			if (number[i] == number[j])
@@ -102,7 +117,9 @@ int	main(int argc, char **argv)
 		checkparams(argv);
 		number = strnumber(argv, argc);
 		norepeat(number);
-		i = 1;
+		i = 0;
+		/* while (number[i])
+			printf("%d\n", number[i++]); */
 		while (number[i])
 		{
 			if (!stack_a)
@@ -112,8 +129,7 @@ int	main(int argc, char **argv)
 			}
 			else
 			{
-				ft_lstadd_back(stack_a, ft_lstnew(number[i]));
-				free(stack_a);
+				add_back(stack_a, number[i]);
 			}
 			i++;
 		}
