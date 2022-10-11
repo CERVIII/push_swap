@@ -6,7 +6,7 @@
 /*   By: pcervill <pcervill@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 13:56:57 by pcervill          #+#    #+#             */
-/*   Updated: 2022/10/10 17:50:04 by pcervill         ###   ########.fr       */
+/*   Updated: 2022/10/11 09:43:59 by pcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,10 @@ int	main(int argc, char *argv[])
 		number = strnumber(argv, argc);
 		printf("Total numeros: %d\n", ft_stacksize(stack_a));
 		i = 0;
-		/* while (number[i])
+		while (number[i])
 		{
 			stack_a = addnumber(stack_a, number[i++]);
-		} */
+		}
 		while (stack_a)
 		{
 			printf("   %d\n", stack_a->content);
